@@ -16,7 +16,7 @@
 
 /*	UPDATES 
 	
-	1.1.1: Fixed error when propogating user_blog_url
+	1.1.1: Fixed error when propogating user_blog_url & also included ':' for aesthetic purpose on line: 111
 	1.1.0: Added blog meta to determine previous payment for better discounts
 	1.0.1: commas, comma, dots and dots are now all valid.
 
@@ -108,7 +108,7 @@ function add_prosite_upgrade_shortcode() {
 				$prositeleveltime = date_i18n('d F, Y', $protimesql); /* exchange d and F if you're a weird American, example: ('F d, Y', $protimesql) */ 
 			}
 			
-			echo '<h2 class="upgradetitle">Upgrade Site ' . $user_mapped_url . '</h2>'; /* Change the title if you'd like, '<h2 ... Site ' and '</h2>' allows HTML changes, keep the '' */
+			echo '<h2 class="upgradetitle">Upgrade Site: ' . $user_mapped_url . '</h2>'; /* Change the title if you'd like, '<h2 ... Site ' and '</h2>' allows HTML changes, keep the '' */
 			echo '<ul class="prositesupgrade">';
 			echo '<li class="prositecurrentlevel">Current Pro Site level: ' . $prositelevelname . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Expires on: ' . $prositeleveltime . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
