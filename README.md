@@ -1,6 +1,8 @@
 # gf-prosites
 This repo contains two plugins: The User Registration Plugin and the Upgrade Plugin. They allow RocketGenius, Inc.'s Gravity Froms and WPMUdev's Pro Sites plugins work together.
 
+UPDATE by SqueakyOX: There are three plugins now. The 2 original plugins & 1 forked version for trial registration. The current version are all in working progress. It isn't definitive and some part are still broken. Use at your own peril! You can contact me at wpmudev for more info!
+
 #THE USER REGISTRATION PLUGIN
 The first plugin is a custom version of Gravity form's User Registration form plugin. This allows you to bypass wpmudev's prosites signup page and register new sites with a custom form. 
 
