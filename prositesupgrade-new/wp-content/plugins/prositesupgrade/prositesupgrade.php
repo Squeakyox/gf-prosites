@@ -3,8 +3,8 @@
  * Plugin Name: GForms ProSite Upgrade/Downgrade/Extend
  * Plugin URI: https://hostmijnpagina.nl/
  * Description: Allows your users to upgrade, downgrade or extend their chosen website using Pro Sites and Gravity Forms 
- * Author: Sybre Waaijer
- * Version: 1.1.0
+ * Author: Sybre Waaijer & SqueakyOx
+ * Version: 1.1.1
  * Author URI: https://cyberwire.nl/
  */
 
@@ -16,6 +16,7 @@
 
 /*	UPDATES 
 	
+	1.1.1: Fixed error when propogating user_blog_url
 	1.1.0: Added blog meta to determine previous payment for better discounts
 	1.0.1: commas, comma, dots and dots are now all valid.
 
@@ -95,9 +96,11 @@ function add_prosite_upgrade_shortcode() {
 			$user_blog_url = get_blogaddress_by_id( $user_blog_id );
 			$prolevelsql = $wpdb->get_var($wpdb->prepare("SELECT level FROM {$wpdb->base_prefix}pro_sites WHERE blog_ID = %d", $user_blog_id));
 			$prositelevelname = $psts->get_level_setting( $psts->get_level( $user_blog_id ), 'name' );
-		
-			$striphttp = is_ssl() ? 7 : 6; /* Missing a letter in the title? Change the 7 to 6 */ 
-			$user_mapped_url = !empty($mapped_domain) ? $mapped_domain : strstr(substr($user_blog_url, $striphttp), '/', true);
+			
+			/* Changed since @v1.1.1 to correct blank errors */ 
+			$user_mapped_url = $mapped_domain ? $mapped_domain : $user_blog_url;
+			$user_mapped_url = str_replace( array( 'http://', 'https://' ), '', $user_mapped_url );
+			$user_mapped_url = str_replace( '/', '', $user_mapped_url );
 	
 			if ($prolevelsql == 0) {
 				$prositeleveltime = "Undetermined";
