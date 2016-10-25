@@ -4,15 +4,19 @@
  * Plugin URI: http://www.squeakyox.com
  * Description: Allows your users to manual purchase using Pro Sites and Gravity Forms 
  * Author: Sybre Waaijer & SqueakyOx
- * Version: 0.0.2
+ * Version: 0.0.3
  * Base Version: 1.1.1 of prosite upgrade by Syber Waaijer
  * Author URI: http://www.squeakyox.com
  */
 
 /*	UPDATES 
 	
+	0.0.3: Fixed bug in prepopulate that affect rendering of other forms as well & removal of extra non-required variable that may cause errors.
 	0.0.2: Redirect to home_url/login when user is not logged in
 	0.0.1: Code rehash for other purpose - 3 forms (1 x order, 1 x payment confirmation, 1 x auto populate). Also include custom currency
+
+*/
+
 
 /*
 
@@ -212,8 +216,8 @@ function display_auto_gform () {
 
 	PARSE INFO SECTION
 	
-*/
 
+*/
 
 add_filter("gform_field_input", "prepopulate_the_fields", 10, 5);
 function prepopulate_the_fields($input, $field, $value, $lead_id, $form_id){
@@ -223,7 +227,8 @@ function prepopulate_the_fields($input, $field, $value, $lead_id, $form_id){
 	$confirmform_id = '15';
 	$autoform_id = '16';
 	
-	if ($form_id == $purchaseform_id || $form_id == $confirmform_id || $form_id == $autoform_id); {
+	
+	if ($form_id == $purchaseform_id || $form_id == $confirmform_id || $form_id == $autoform_id) {
 		$levelfield_id = '1';
 		$emailfield_id = '2';
 		$blogurlfield_id = '3';
@@ -240,24 +245,24 @@ function prepopulate_the_fields($input, $field, $value, $lead_id, $form_id){
 		$currentprositetime = $wpdb->get_var($wpdb->prepare("SELECT expire FROM {$wpdb->base_prefix}pro_sites WHERE blog_ID = %d", $user_blog_id));
 		$user_blog_url = get_blogaddress_by_id( $user_blog_id );
 		$mapped_domain = $wpdb->get_var($wpdb->prepare("SELECT domain FROM {$wpdb->base_prefix}domain_mapping WHERE blog_id = %d", $user_blog_id));
-						
 		
-		/* populating the fields */
+						
 		if ($field["id"] == $levelfield_id) {
-			$input = '<input name="input_' . $levelfield_id . '" id="input_' . $myform_id . '_' . $levelfield_id . '" type="hidden"  class="gform_hidden" value="' . $currentprositelevel . '">';
+			$input = '<input name="input_' . $levelfield_id . '" id="input_' . $levelfield_id . '" type="hidden"  class="gform_hidden" value="' . $currentprositelevel . '">';
 		}
 		if ($field["id"] == $emailfield_id) {
-			$input = '<input name="input_' . $emailfield_id . '" id="input_' . $myform_id . '_' . $emailfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_email . '">';
+			$input = '<input name="input_' . $emailfield_id . '" id="input_' . $emailfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_email . '">';
 		}
 		if ($field["id"] == $blogurlfield_id) {
-			$input = '<input name="input_' . $blogurlfield_id . '" id="input_' . $myform_id . '_' . $blogurlfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_blog_url . '">';
+			$input = '<input name="input_' . $blogurlfield_id . '" id="input_' . $blogurlfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_blog_url . '">';
 		}
 		if ($field["id"] == $mappedurlfield_id) {
-			$input = '<input name="input_' . $mappedurlfield_id . '" id="input_' . $myform_id . '_' . $mappedurlfield_id . '" type="hidden"  class="gform_hidden" value="' . $mapped_domain . '">';
+			$input = '<input name="input_' . $mappedurlfield_id . '" id="input_' . $mappedurlfield_id . '" type="hidden"  class="gform_hidden" value="' . $mapped_domain . '">';
 		}
 		if ($field["id"] == $userfield_id) {
-			$input = '<input name="input_' . $userfield_id . '" id="input_' . $myform_id . '_' . $userfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_login . '">';
+			$input = '<input name="input_' . $userfield_id . '" id="input_' . $userfield_id . '" type="hidden"  class="gform_hidden" value="' . $user_login . '">';
 		}
+		
 		return $input;
 	}
 }
