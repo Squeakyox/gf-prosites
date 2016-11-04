@@ -4,13 +4,14 @@
  * Plugin URI: http://www.squeakyox.com
  * Description: Allows your users to manual purchase using Pro Sites and Gravity Forms 
  * Author: Sybre Waaijer & SqueakyOx
- * Version: 0.0.3
+ * Version: 0.0.4
  * Base Version: 1.1.1 of prosite upgrade by Syber Waaijer
  * Author URI: http://www.squeakyox.com
  */
 
 /*	UPDATES 
 	
+	0.0.4: Fixed bug when pulling gravity forms due to CSS layout error. Have edited for fixes (works with 2.1.0.1 of gravity forms)
 	0.0.3: Fixed bug in prepopulate that affect rendering of other forms as well & removal of extra non-required variable that may cause errors.
 	0.0.2: Redirect to home_url/login when user is not logged in
 	0.0.1: Code rehash for other purpose - 3 forms (1 x order, 1 x payment confirmation, 1 x auto populate). Also include custom currency
@@ -83,7 +84,7 @@ function redirect_purchase_shortcode() {
 			echo '<li class="prositecurrentlevel">Base User Blog URL: ' . $stripped_user_blog_url . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
-			echo do_shortcode( '[gravityform id="' . $myformid . '" name="Upgrade" title="true" description="false"]' );
+			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
 		} else {
 			wp_redirect(home_url()); exit;
 		}
@@ -142,7 +143,7 @@ function display_payment_gform () {
 			echo '<li class="prositecurrentlevel">Base User Blog URL: ' . $stripped_user_blog_url . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
-			echo do_shortcode( '[gravityform id="' . $myformid . '" name="Upgrade" title="true" description="false"]' );
+			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
 		} else {
 			wp_redirect(home_url()); exit;
 		}
@@ -202,8 +203,7 @@ function display_auto_gform () {
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
 			echo '<h4 class="upgradetitle"> Domain Checker:'. do_shortcode( '[wpdomainchecker]') . '</h4>';
-			echo '<h6 class="upgradebreaker">&nbsp;</h6>';
-			echo do_shortcode( '[gravityform id="' . $myformid . '" name="Upgrade" title="true" description="false"]' );
+			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
 		} else {
 			wp_redirect(home_url()); exit;
 		}
