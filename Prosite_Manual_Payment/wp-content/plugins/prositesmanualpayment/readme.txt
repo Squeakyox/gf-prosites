@@ -39,13 +39,13 @@ README
 		c. On /confirmpayment/ include [redirect_confirm]
 		d. On /domain include [redirect_auto]
 	5. Let's fill in some fields!
-		Line 35: replace '/purchase/' with your nominated page
-		Line 43: replace '14' with your PID
-		Line 102: replace '15' with your CID
-		Line 161: replace '16' with your RID
-		Line 222: replace '14' with your PID
-		Line 223: replace '15' with your CID
-		Line 224: replace '16' with your RID
+		Line 40: replace '/purchase/' with your nominated page
+		Line 48: replace '14' with your PID
+		Line 107: replace '15' with your CID
+		Line 166: replace '16' with your RID
+		Line 227: replace '14' with your PID
+		Line 228: replace '15' with your CID
+		Line 229: replace '16' with your RID
 	
 	FOR Gravity Forms
 
