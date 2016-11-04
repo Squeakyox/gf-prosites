@@ -84,7 +84,8 @@ function redirect_purchase_shortcode() {
 			echo '<li class="prositecurrentlevel">Base User Blog URL: ' . $stripped_user_blog_url . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
-			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
+			echo '<div class="prosite_clearfix"></div>';
+			echo do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' );
 		} else {
 			wp_redirect(home_url()); exit;
 		}
@@ -143,7 +144,8 @@ function display_payment_gform () {
 			echo '<li class="prositecurrentlevel">Base User Blog URL: ' . $stripped_user_blog_url . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
-			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
+			echo '<div class="prosite_clearfix"></div>';
+			echo do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' );
 		} else {
 			wp_redirect(home_url()); exit;
 		}
@@ -195,15 +197,16 @@ function display_auto_gform () {
 				$prositeleveltime = date_i18n('d F, Y', $protimesql); /* exchange d and F if you're a weird American, example: ('F d, Y', $protimesql) */ 
 			}
 			
-			echo '<h2 class="upgradetitle">Auto Parse: ' . $user_mapped_url . '</h2>'; /* Change the title if you'd like, '<h2 ... Site ' and '</h2>' allows HTML changes, keep the '' */
+			echo '<h2 class="upgradetitle">Domain: ' . $user_mapped_url . '</h2>'; /* Change the title if you'd like, '<h2 ... Site ' and '</h2>' allows HTML changes, keep the '' */
 			echo '<ul class="prositesupgrade">';
 			echo '<li class="prositecurrentlevel">Current Pro Site level: ' . $prositelevelname . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Expires on: ' . $prositeleveltime . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrentlevel">Base User Blog URL: ' . $stripped_user_blog_url . '</li>'; /* Change the title if you'd like, '<li ... vel: ' and '</li>' allows HTML changes, keep the '' */
 			echo '<li class="prositecurrenttime">Mapped User Blog URL: ' . $user_mapped_url . '</li>'; /* Change the title if you'd like, '<li on: ' and '</li>' allows HTML changes, keep the '' */
 			echo '</ul>';
-			echo '<h4 class="upgradetitle"> Domain Checker:'. do_shortcode( '[wpdomainchecker]') . '</h4>';
-			echo '<div class="prosite_clearfix">'. do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' ) . '</div>';
+			echo '<div class="domain_checker"> Domain Checker:'. do_shortcode( '[wpdomainchecker]') . '</div>';
+			echo '<div class="prosite_clearfix"></div>';
+			echo do_shortcode( '[gravityform id="' . $myformid . '" title="false" description="false"]' );
 		} else {
 			wp_redirect(home_url()); exit;
 		}
