@@ -59,6 +59,10 @@ ul .prositecurrentime {
 	list-style-type: none !important;
 }
 
+.prosite_clearfix {
+	clear: left;
+}
+
 /* I want to (from...) */
 .entryselect {
 	position: relative;
